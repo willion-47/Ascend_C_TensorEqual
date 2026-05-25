@@ -49,3 +49,48 @@ $$z_{i} = |x_{i} - y_{i}|$$
 │   └── tensor_equal_tiling.h  # Tiling 数据结构定义
 ├── op_kernel
 │   └── tensor_equal.cpp       # Device侧 Ascend C Kernel 具体计算实现
+```
+
+## 🚀 编译与部署 (Build & Deploy)
+
+1. **配置 CANN 环境变量**：
+```bash
+source /usr/local/Ascend/ascend-toolkit/set_env.sh
+
+```
+
+
+2. **执行编译** (假设外层使用了标准的 CANN CMake 构建框架)：
+```bash
+bash build.sh
+
+```
+
+
+编译成功后，将在 `build_out/` 目录下生成 `run` 包 (如 `custom_opp_xxx.run`)。
+3. **安装算子**：
+```bash
+cd build_out
+./custom_opp_*.run
+
+```
+
+
+
+## 🧪 验证与测试 (Verification)
+
+算子部署后，可以通过 Python 构建单算子 API (ACLNN) 测试脚本验证结果。预期验证逻辑如下：
+
+```python
+import numpy as np
+
+# 1. 构造测试数据
+x = np.random.uniform(-10, 10, size=(1024,)).astype(np.float32)
+y = np.random.uniform(-10, 10, size=(1024,)).astype(np.float32)
+
+# 2. 预期输出 (Golden Data)
+expected_z = np.abs(x - y)
+
+# 3. 与 NPU 执行结果对比...
+# assert np.allclose(npu_z, expected_z, atol=1e-5)
+```
