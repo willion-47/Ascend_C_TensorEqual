@@ -1,7 +1,3 @@
-# Ascend_C_TensorEqual
-
-基于 Ascend C 和华为 CANN 架构开发的 TensorEqual（张量绝对差值）自定义算子。针对 Orange Pi AI Pro（昇腾芯片）进行了多核与双缓冲队列优化，实现 $z = |x - y|$ 的高性能端侧计算。
-
 # TensorEqual Custom Operator for CANN
 
 [![CANN Version](https://img.shields.io/badge/CANN-7.0%2B-blue.svg)]()
