@@ -17,7 +17,7 @@
 $$z_{i} = |x_{i} - y_{i}|$$
 
 ### ✨ 性能优化亮点
-* **多核负载均衡 (Multi-core Tiling):** 在 Host 侧基于实际数据量和硬件 Core 数量动态切分任务，确保多核利用率最大化。
+* **多核负载均衡 (Multi-core Tiling):** 在 Host 侧基于实际数据量和硬件 AI Core 数量动态切分任务，确保多核利用率最大化。
 * **内存对齐 (Memory Alignment):** 严格遵循 32-Byte 内存对齐原则（单次处理 8 个 Float32 元素），提升 Vector 单元的访存效率。
 * **双缓冲流水线 (Double Buffering):** Kernel 侧使用深度为 2 的 TQue 队列，实现了搬入（CopyIn）、计算（Compute）和搬出（CopyOut）的并行流水线作业。
 * **In-place 内存复用:** 在计算步骤中巧妙复用临时缓冲区，规避了原地修改引发的访存冲突。
